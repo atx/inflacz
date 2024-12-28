@@ -1,12 +1,5 @@
 import type { UserProfile } from '~/types/profile'
 
-const DEFAULT_PROFILE_IMAGE = {
-  src: 'https://m.atx.name/s/inflacka/student.ng',
-  alt: 'Default profile avatar',
-  width: 64,
-  height: 64
-}
-
 export const userProfiles: UserProfile[] = [
   {
     id: 'default',
@@ -14,8 +7,8 @@ export const userProfiles: UserProfile[] = [
     description: 'Oficiální váhy používané Českým statistickým úřadem',
     categories: [],
     image: {
-      src: 'https://m.atx.name/s/inflacka/basket.png',
-      alt: 'Default profile avatar',
+      src: '/images/profiles/basket.png',
+      alt: 'Ikonka nákupního košíku',
       width: 64,
       height: 64
     }
@@ -30,8 +23,8 @@ export const userProfiles: UserProfile[] = [
       { categoryId: 'transport', amount: 2000 }
     ],
     image: {
-      src: 'https://m.atx.name/s/inflacka/student.png',
-      alt: 'Default profile avatar',
+      src: '/images/profiles/student.png',
+      alt: 'Ikonka s mladým studentem',
       width: 64,
       height: 64
     }
@@ -46,8 +39,8 @@ export const userProfiles: UserProfile[] = [
       { categoryId: 'education', amount: 3000 }
     ],
     image: {
-      src: 'https://m.atx.name/s/inflacka/family.png',
-      alt: 'Default profile avatar',
+      src: '/images/profiles/family.png',
+      alt: 'Ikonka s rodinou',
       width: 64,
       height: 64
     }
@@ -62,8 +55,8 @@ export const userProfiles: UserProfile[] = [
       { categoryId: 'health', amount: 2000 }
     ],
     image: {
-      src: 'https://m.atx.name/s/inflacka/senior.png',
-      alt: 'Default profile avatar',
+      src: '/images/profiles/senior.png',
+      alt: 'Ikonka se starším člověkem používajicím chodítko',
       width: 64,
       height: 64
     }
@@ -74,8 +67,8 @@ export const userProfiles: UserProfile[] = [
     description: 'Vytvořte si vlastní složení spotřebního koše',
     categories: [],
     image: {
-      src: 'https://m.atx.name/s/inflacka/custom.png',
-      alt: 'Default profile avatar',
+      src: '/images/profiles/custom.png',
+      alt: 'Ikonka s ozubeným kolem',
       width: 64,
       height: 64
     }
