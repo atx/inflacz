@@ -8,10 +8,10 @@
           </NuxtLink>
         </div>
         <div class="flex space-x-8">
-          <NuxtLink to="/metodika" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-700 hover:text-blue-600">
+          <NuxtLink to="/metodika" class="inline-flex items-center px-1 pt-1 text-l font-medium text-gray-700 hover:text-blue-600">
             Metodika
           </NuxtLink>
-          <NuxtLink to="/kontakt" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-700 hover:text-blue-600">
+          <NuxtLink to="/kontakt" class="inline-flex items-center px-1 pt-1 text-l font-medium text-gray-700 hover:text-blue-600">
             Kontakt
           </NuxtLink>
         </div>
