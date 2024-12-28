@@ -28,7 +28,7 @@ import { calculateMaxValue } from '~/utils/scaling'
 
 const route = useRoute()
 const { getProfile, getProfileSpending } = useProfiles()
-const { calculateInflation, getDefaultTimeRange } = useInflationCalculator()
+const { calculateInflation } = useInflationCalculator()
 
 const profile = computed(() => getProfile(route.params.profile as string))
 const categories = ref<CategoryDefinition[]>(useCategories())
@@ -42,11 +42,14 @@ const currentSpending = computed((): SpendingCategory[] => {
   }))
 })
 
-const timeRange = getDefaultTimeRange()
 const yearRange = computed(() => {
-  const years: number[] = []
-  for (let year = timeRange.from.year; year <= timeRange.to.year; year++) {
-    years.push(year)
+  // Return current year and 1 year to the future
+  const currentYear = new Date().getFullYear()
+  const years = []
+  // We do not include 2018 as we do not have data for 2017-12 to start
+  // the computation on
+  for (let i = 2019; i <= currentYear + 1; i++) {
+    years.push(i)
   }
   return years
 })

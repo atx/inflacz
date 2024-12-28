@@ -19,8 +19,7 @@ export const userProfiles: UserProfile[] = [
     description: 'Typické výdaje mladého studenta (nájem, MHD, potraviny)',
     categories: [
       { categoryId: 'housing_rent', amount: 8000 },
-      { categoryId: 'food', amount: 6000 },
-      { categoryId: 'transport', amount: 2000 }
+      { categoryId: 'food', amount: 6000 }
     ],
     image: {
       src: '/images/profiles/student.png',

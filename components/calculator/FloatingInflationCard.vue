@@ -17,10 +17,13 @@ const props = defineProps<{
   results: InflationResult[]
 }>()
 
-const currentYear = new Date().getFullYear()
+const currentYear = computed(() => {
+  const currentYearResult = props.results.find(result => result.isLastComplete)
+  return currentYearResult?.from.year ?? NaN
+})
 
 const currentRate = computed(() => {
-  const currentYearResult = props.results.find(result => result.period.year === currentYear)
+  const currentYearResult = props.results.find(result => result.isLastComplete)
   return currentYearResult?.personalRate ?? NaN
 })
 </script>

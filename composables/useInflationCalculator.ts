@@ -1,6 +1,6 @@
-import type { InflationResult, SpendingCategory, TimePeriod } from '~/types'
-import { createTimePeriod } from '~/types'
-import { useInflationRates } from './useInflationRates'
+import type { InflationResult, SpendingCategory, TimePeriod, CategoryInflationData } from '~/types'
+import { createTimePeriod, stringToTimePeriod, timePeriodToString } from '~/types'
+import { inflationRates } from '~/data/inflationRates'
 
 export interface TimeRange {
   from: TimePeriod
@@ -8,7 +8,10 @@ export interface TimeRange {
 }
 
 export const useInflationCalculator = () => {
-  const { getYearlyRateForCategory } = useInflationRates()
+
+  const getCategoryInflationData = (categoryId: string) => {
+    return inflationRates.find(c => c.id === categoryId)
+  }
 
   const calculateInflation = (
     categories: SpendingCategory[],
@@ -18,51 +21,38 @@ export const useInflationCalculator = () => {
       return {
         personalRate: 0,
         nationalRate: 0,
-        breakdown: [],
         period: timeRange.to
       }
     }
 
-    const total = categories.reduce((sum, c) => sum + c.amount, 0)
-    
-    // Calculate weighted average of category rates
-    const weightedRates = categories.map(category => {
-      const weight = category.amount / total
-      const rate = getYearlyRateForCategory(category.categoryId, timeRange.to.year)
-      return {
-        categoryId: category.categoryId,
-        contribution: weight * rate,
-        weight,
-        rate
+    let totalSpendBefore = 0.0
+    let totalSpendAfter = 0.0
+    // TODO: Maybe preprocess the inflationRates object
+    categories.forEach(cat => {
+      const categoryData = inflationRates.find(c => c.id === cat.categoryId)
+      if (!categoryData) {
+        // WTF
+        return
       }
+      const rates = categoryData.rates
+      const rateBefore = rates[timePeriodToString(timeRange.from)]
+      const rateAfter = rates[timePeriodToString(timeRange.to)]
+      totalSpendBefore += cat.amount * rateBefore
+      totalSpendAfter += cat.amount * rateAfter
     })
 
-    const personalRate = weightedRates.reduce((sum, wr) => sum + wr.contribution, 0) % 10.0
-
-    // For now, use a simplified national rate calculation
-    const nationalRate = 6.5 // This should be calculated from the data in a real implementation
+    const personalRate = totalSpendAfter / totalSpendBefore - 1
 
     return {
-      personalRate,
-      nationalRate,
-      breakdown: weightedRates.map(wr => ({
-        categoryId: wr.categoryId,
-        contribution: wr.contribution
-      })),
-      period: timeRange.to
-    }
-  }
-
-  const getDefaultTimeRange = (): TimeRange => {
-    const currentYear = new Date().getFullYear()
-    return {
-      from: createTimePeriod(currentYear - 2, 1),
-      to: createTimePeriod(currentYear + 1, 12)
+      personalRate: personalRate * 100,
+      from: timeRange.from,
+      to: timeRange.to,
+      isComplete: timeRange.to.year <= 2024,
+      isLastComplete: timeRange.to.year === 2024
     }
   }
 
   return {
-    calculateInflation,
-    getDefaultTimeRange
+    calculateInflation
   }
 }

@@ -13,10 +13,8 @@ export interface UserProfile {
 // Computed results
 export interface InflationResult {
   personalRate: number
-  nationalRate: number
-  breakdown: {
-    categoryId: string
-    contribution: number
-  }[]
-  period: TimePeriod
+  from: TimePeriod
+  to: TimePeriod
+  isComplete: boolean
+  isLastComplete: boolean
 }
