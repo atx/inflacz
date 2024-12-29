@@ -6,20 +6,24 @@
     
     <div class="prose prose-blue max-w-none">
       <p>
-        Máte dotaz nebo připomínku? Neváhejte nás kontaktovat.
+        Máte dotaz nebo připomínku? Neváhejte mě kontaktovat:
       </p>
 
       <div class="bg-white shadow-sm rounded-lg p-6 mt-6">
         <h2 class="text-xl font-semibold mb-4">Kontaktní informace</h2>
         <ul class="space-y-4">
           <li class="flex items-center">
-            <span class="text-gray-600 mr-2">📧</span>
-            <a href="mailto:info@inflacka.cz" class="text-blue-600 hover:text-blue-800">
-              info@infla.cz
+          <Icon name="mdi:mail"
+                class="text-gray-600 mr-2 w-5 h-5"
+          />
+            <a href="#" class="text-blue-600 hover:text-blue-800">
+              info [zavináč] infla.cz
             </a>
           </li>
           <li class="flex items-center">
-            <span class="text-gray-600 mr-2">🌐</span>
+          <Icon name="mdi:github"
+                class="text-gray-600 mr-2 w-5 h-5"
+          />
             <a href="https://github.com/atx/inflacz" class="text-blue-600 hover:text-blue-800">
               GitHub
             </a>
