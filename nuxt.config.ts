@@ -1,6 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss'],
+  target: 'static',
+  router: {
+    base: ''
+  },
   app: {
     head: {
       title: 'infla.cz - Personalizovaná míra inflace',
