@@ -56,7 +56,7 @@ const yearlyRates = computed<YearlyRate[]>(() => {
   const currentYear = new Date().getFullYear()
   
   return props.results.map(result => ({
-    year: result.from.year,
+    year: result.to.year,
     value: result.personalRate,
     isCurrent: result.isLastComplete,
     isYTD: !result.isComplete

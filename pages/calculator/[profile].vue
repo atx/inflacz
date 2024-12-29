@@ -11,7 +11,7 @@
 
       <div class="bg-white rounded-lg shadow p-6">
         <CalculatorCategoryList
-          :categories="categories"
+          :categories="metadata.categories"
           v-model="spendingByCategory"
           :max-value="maxSliderValue"
           @slider-release="updateMaxValue"
@@ -23,32 +23,32 @@
 
 <script setup lang="ts">
 import type { CategoryDefinition, InflationResult, SpendingCategory } from '~/types'
+import type { DataMetadata } from '~/composables/useMetadata'
 import { useInflationCalculator } from '~/composables/useInflationCalculator'
 import { calculateMaxValue } from '~/utils/scaling'
 
 const route = useRoute()
 const { getProfile, getProfileSpending } = useProfiles()
-const { calculateInflation } = useInflationCalculator()
+const { calculateInflationForYear } = useInflationCalculator()
 
 const profile = computed(() => getProfile(route.params.profile as string))
+const metadata = ref<DataMetadata>(useMetadata())
 const categories = ref<CategoryDefinition[]>(useCategories())
 const spendingByCategory = ref<Record<string, number>>({})
 const maxSliderValue = ref(10000) // Initial default value
 
 const currentSpending = computed((): SpendingCategory[] => {
-  return categories.value.map(category => ({
+  return metadata.value.categories.map(category => ({
     categoryId: category.id,
     amount: spendingByCategory.value[category.id] || 0
   }))
 })
 
 const yearRange = computed(() => {
-  // Return current year and 1 year to the future
-  const currentYear = new Date().getFullYear()
   const years = []
   // We do not include 2018 as we do not have data for 2017-12 to start
   // the computation on
-  for (let i = 2019; i <= currentYear + 1; i++) {
+  for (let i = metadata.value.minTimePeriod.year + 1; i <= metadata.value.maxTimePeriod.year; i++) {
     years.push(i)
   }
   return years
@@ -56,11 +56,7 @@ const yearRange = computed(() => {
 
 const inflationResults = computed((): InflationResult[] => {
   return yearRange.value.map(year => {
-    const periodRange = {
-      from: { year, month: 1 },
-      to: { year, month: 12 }
-    }
-    return calculateInflation(currentSpending.value, periodRange)
+    return calculateInflationForYear(currentSpending.value, year)
   })
 })
   
