@@ -62,8 +62,8 @@ jobs:
             ${{ runner.os }}-nuxt-build-
       - name: Install dependencies
         run: |
-          apt-get update -y
-          apt-get install python3-requests python3-lxml
+          sudo apt-get update -y
+          sudo apt-get install python3-requests python3-lxml
           ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Update inflation data
         run: |
