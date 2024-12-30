@@ -122,8 +122,7 @@ def main():
         downloader = CSUDownloader()
         logging.info(f"Downloading price data for year {args.year}")
         downloader.download_price_data(args.year, args.output)
-        logging.info(f"Data saved to: {args.output}")
-        
+
     except Exception as e:
         logging.error(f"Error: {str(e)}")
         exit(1)
