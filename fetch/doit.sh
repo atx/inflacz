@@ -24,7 +24,5 @@ done
 # Process all XML files together
 echo -e "\nProcessing XML files..."
 output_file="output_$(date +"%Y%m%d").json"
-echo "Processing all files into ${output_file}..."
-./process.py "${xml_files[@]}" -o "${output_file}"
-
-echo -e "\nAll done! Check the output files in the current directory."
+echo "Processing all files..."
+./process.py "${xml_files[@]}"
