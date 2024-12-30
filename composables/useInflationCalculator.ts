@@ -61,10 +61,14 @@ export const useInflationCalculator = () => {
     const avgSpendBefore = sumSpendForKeys(prevKeys) / prevKeys.length
     const avgSpendAfter = sumSpendForKeys(thisKeys) / thisKeys.length
 
-    const personalRate = avgSpendAfter / avgSpendBefore - 1
+    const avgSpendRatio = avgSpendAfter / avgSpendBefore
+    // Annualize the ratio
+    const annualizedRatio = Math.pow(avgSpendRatio, 12 / thisKeys.length)
+
+    const personalRate = (annualizedRatio - 1.0) * 100
 
     return {
-      personalRate: personalRate * 100,
+      personalRate,
       from: stringToTimePeriod(thisKeys[0]),
       to: stringToTimePeriod(thisKeys[thisKeys.length - 1]),
       isComplete: thisKeys.length === 12,
