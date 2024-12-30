@@ -5,6 +5,9 @@
 name: Deploy Nuxt site to Pages
 
 on:
+  schedule:
+    # Every sunday at 02:05 (no clue what timezone)
+    - cron: "5 2 * * 0"
   # Runs on pushes targeting the default branch
   push:
     branches: ["master"]
