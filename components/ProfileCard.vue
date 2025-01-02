@@ -1,7 +1,8 @@
 <template>
   <div 
-    class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 p-6 cursor-pointer"
-    @mouseup="handleClick"
+  class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 p-6 cursor-pointer"
+    @click.middle="handleClickMiddle"
+    @click="handleClick"
   >
     <div class="flex items-center space-x-4 mb-4">
       <img
@@ -30,11 +31,21 @@ const props = defineProps<{
 
 const router = useRouter()
 
+const handleClickMiddle = (event: MouseEvent) => {
+  // This magically works both in Firefox and Chromium
+  // Apparently does not work on Chrome
+  // https://stackoverflow.com/a/76529021
+  const a = document.createElement('a');
+  a.href = `/calculator/${props.profile.id}`;
+  a.target = '_blank';
+  const e = new MouseEvent('click', {
+    ctrlKey: true, // for Windows or Linux
+    metaKey: true, // for MacOS
+  });
+  a.dispatchEvent(e);
+}
+
 const handleClick = (event: MouseEvent) => {
-  if (event.button === 1) { // Middle mouse button
-    window.open(`/calculator/${props.profile.id}`, '_blank')
-  } else {
-    router.push(`/calculator/${props.profile.id}`)
-  }
+  router.push(`/calculator/${props.profile.id}`)
 }
 </script>
