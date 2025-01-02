@@ -14,7 +14,6 @@
         v-for="profile in profiles"
         :key="profile.id"
         :profile="profile"
-        @click="navigateTo(`/calculator/${profile.id}`)"
       />
     </div>
   </main>
