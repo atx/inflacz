@@ -9,7 +9,7 @@
         Oficiální míra inflace je vypočítávána Českým statistickým úřadem na základě tzv. spotřebního koše. Ten obsahuje přes 700 reprezentativních položek rozdělených do 12 hlavních kategorií, od potravin přes bydlení až po vzdělávání. Každé položce je přiřazena váha podle toho, jak velkou část výdajů "průměrná" česká domácnost na danou kategorii vynakládá.
       </p>
       <p>
-        Tento přístup, ačkoliv metodologicky správný pro měření celkové cenové hladiny v ekonomice, nemusí přesně odrážet vaši osobní zkušenost s růstem cen. Například mladý nezadaný člověk žijící v nájmu v Praze bude mít výrazně jiné výdajové vzorce než čtyřčlenná rodina žijící ve vlastním domě na venkově. Proto jsme vyvinuli kalkulačku, která vám umožní vypočítat vaši "osobní míru inflace" na základě vašich skutečných výdajových vzorců.
+        Tento přístup, ačkoliv metodologicky správný pro měření celkové cenové hladiny v ekonomice, nemusí přesně odrážet osobní zkušenost každého jednotlivce s růstem cen. Například mladý nezadaný člověk žijící v nájmu v Praze bude kupovat výrazně jiné zboží než čtyřčlenná rodina žijící ve vlastním domě na venkově. Proto jsme vyvinuli kalkulačku, která vám umožní vypočítat vaši "osobní míru inflace" na základě vašich skutečných výdajů.
       </p>
       <h2>Jak kalkulačka funguje?</h2>
       <p>Náš výpočet probíhá ve třech hlavních krocích:</p>
