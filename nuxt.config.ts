@@ -1,13 +1,14 @@
-
 import tailwindTypography from '@tailwindcss/typography'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss', '@nuxt/icon'],
   target: 'static',
+
   router: {
     base: ''
   },
+
   app: {
     head: {
       title: 'infla.cz - Personalizovaná míra inflace',
@@ -18,9 +19,12 @@ export default defineNuxtConfig({
       ]
     }
   },
+
   tailwindcss: {
     config: {
       plugins: [tailwindTypography]
     }
-  }
+  },
+
+  compatibilityDate: '2025-01-02'
 })
