@@ -7,7 +7,10 @@
 
       <CalculatorInflationDisplay :results="inflationResults" />
       
-      <CalculatorFloatingInflationCard :results="inflationResults" />
+      <CalculatorFloatingInflationCard 
+        v-if="showFloatingCard" 
+        :results="inflationResults" 
+      />
 
       <div class="bg-white rounded-lg shadow p-6">
         <CalculatorCategoryList
@@ -38,6 +41,20 @@ const metadata = ref<DataMetadata>(useMetadata())
 const categories = ref<CategoryDefinition[]>(useCategories())
 const spendingByCategory = ref<Record<string, number>>({})
 const maxSliderValue = ref(10000) // Initial default value
+const showFloatingCard = ref(false)
+
+// Show floating card after scrolling 200px
+const handleScroll = () => {
+  showFloatingCard.value = window.scrollY > 150
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
 
 const currentSpending = computed((): SpendingCategory[] => {
   return metadata.value.categories.map(category => ({
