@@ -17,6 +17,8 @@
           @slider-release="updateMaxValue"
         />
       </div>
+
+      <CalculatorDataInfo />
     </template>
   </div>
 </template>
