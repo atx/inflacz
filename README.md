@@ -1,20 +1,18 @@
-# Nuxt 3 Minimal Starter
+# [infla.cz](https://infla.cz)
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Personalized inflation calculator. Allows the user to specify re-weighing
+of the official consumer goods basket.
 
-## Setup
+![image](https://github.com/user-attachments/assets/0afa1421-71a8-4de4-afaa-110b4c0697e4)
+
+
+## Development
 
 Make sure to install the dependencies:
 
 ```bash
-# yarn
-yarn install
-
 # npm
 npm install
-
-# pnpm
-pnpm install
 ```
 
 ## Development Server
@@ -39,4 +37,3 @@ Locally preview production build:
 npm run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
