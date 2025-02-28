@@ -8,6 +8,40 @@ export interface TimeRange {
 }
 
 export const useInflationCalculator = () => {
+  const determineLastCompleteYear = (): number => {
+    // Get all unique years from the data keys
+    const years = new Set<number>()
+    
+    // Use the first category's rates as reference for available time periods
+    const timeKeys = Object.keys(inflationRates[0].rates)
+    
+    // Extract years from time keys (format: "YYYY-MM")
+    timeKeys.forEach(key => {
+      const year = parseInt(key.split('-')[0])
+      years.add(year)
+    })
+    
+    // Sort years in descending order
+    const sortedYears = Array.from(years).sort((a, b) => b - a)
+    
+    // Find the most recent year with all 12 months
+    for (const year of sortedYears) {
+      let hasAllMonths = true
+      for (let month = 1; month <= 12; month++) {
+        const key = `${year}-${month.toString().padStart(2, '0')}`
+        if (!timeKeys.includes(key)) {
+          hasAllMonths = false
+          break
+        }
+      }
+      if (hasAllMonths) {
+        return year
+      }
+    }
+    
+    // Fallback: return the earliest year if no complete year found
+    return sortedYears[sortedYears.length - 1]
+  }
 
   const calculateInflationForYear = (
     categories: SpendingCategory[],
@@ -72,7 +106,7 @@ export const useInflationCalculator = () => {
       from: stringToTimePeriod(thisKeys[0]),
       to: stringToTimePeriod(thisKeys[thisKeys.length - 1]),
       isComplete: thisKeys.length === 12,
-      isLastComplete: year === 2024 // TODO: Get this from the data, do not rely on the fetchedAt metadata AI!
+      isLastComplete: year === determineLastCompleteYear()
     }
   }
 
