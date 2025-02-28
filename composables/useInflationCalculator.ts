@@ -72,7 +72,7 @@ export const useInflationCalculator = () => {
       from: stringToTimePeriod(thisKeys[0]),
       to: stringToTimePeriod(thisKeys[thisKeys.length - 1]),
       isComplete: thisKeys.length === 12,
-      isLastComplete: year === 2023 // TODO: Get this from the data
+      isLastComplete: year === 2024 // TODO: Get this from the data
     }
   }
 
