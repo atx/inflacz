@@ -21,13 +21,14 @@ class CSUDownloader:
             'Accept-Encoding': 'gzip, deflate, br, zstd'
         })
 
-    def download_price_data(self, year: int, output_path: Optional[Path] = None) -> str:
+    def download_price_data(self, year: int, output_path: Optional[Path] = None, version: str = "v10111") -> str:
         """
         Downloads price data from ČSÚ for a specific year.
         
         Args:
             year: The year for which to download data
             output_path: Optional path to save the data to
+            version: The version code for the ČSÚ API (defaults to v10111)
             
         Returns:
             str: The downloaded data as a string
@@ -45,7 +46,7 @@ class CSUDownloader:
             'katalog': '31779',
             'pvo': 'CEN082A',
             'evo': [
-                f'v10062_!_CEN082A-{year}_1',
+                f'{version}_!_CEN082A-{year}_1',
                 'v9744_!_CEN08klasifikacelek-kopie_1'
             ],
             'str': 'v3409',
@@ -63,7 +64,7 @@ class CSUDownloader:
                 self.BASE_URL,
                 params=params,
                 headers={
-                    'Referer': f'https://vdb.czso.cz/vdbvo2/faces/cs/index.jsf?page=vystup-objekt&pvo=CEN082A&z=T&f=TABULKA&skupId=2198&katalog=31779&evo=v10062_!_CEN082A-{year}_1&&evo=v9744_!_CEN08klasifikacelek-kopie_1&str=v3409'
+                    'Referer': f'https://vdb.czso.cz/vdbvo2/faces/cs/index.jsf?page=vystup-objekt&pvo=CEN082A&z=T&f=TABULKA&skupId=2198&katalog=31779&evo={version}_!_CEN082A-{year}_1&&evo=v9744_!_CEN08klasifikacelek-kopie_1&str=v3409'
                 }
             )
             response.raise_for_status()
@@ -105,6 +106,14 @@ def parse_args() -> argparse.Namespace:
         help='Enable verbose logging'
     )
     
+    # Add new version argument
+    parser.add_argument(
+        '--version',
+        type=str,
+        default='v10111',
+        help='Version code for the ČSÚ API (default: v10111)'
+    )
+    
     return parser.parse_args()
 
 def main():
@@ -121,7 +130,7 @@ def main():
     try:
         downloader = CSUDownloader()
         logging.info(f"Downloading price data for year {args.year}")
-        downloader.download_price_data(args.year, args.output)
+        downloader.download_price_data(args.year, args.output, args.version)
 
     except Exception as e:
         logging.error(f"Error: {str(e)}")
