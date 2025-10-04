@@ -4,7 +4,7 @@
       <div class="flex justify-between h-16">
         <div class="flex">
           <NuxtLink to="/" class="flex-shrink-0 flex items-center">
-            <span class="text-2xl font-bold text-blue-600">infla.cz</span>
+            <span class="text-2xl font-bold text-blue-600 dark:text-blue-400">infla.cz</span>
           </NuxtLink>
         </div>
         <div class="flex items-center space-x-8">
