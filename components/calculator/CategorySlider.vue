@@ -1,10 +1,10 @@
 <template>
   <div class="space-y-2">
     <div class="flex items-center justify-between">
-      <label class="block text-sm font-medium text-gray-700">
+      <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
         {{ category.name }}
       </label>
-      <span class="text-sm text-gray-500">
+      <span class="text-sm text-gray-500 dark:text-gray-400">
         {{ Math.round(modelValue) }} Kč
       </span>
     </div>
@@ -15,10 +15,10 @@
       @change="handleChange"
       :min="0"
       :max="maxValue"
-      class="w-full"
+      class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
       step="50"
     >
-    <p class="text-sm text-gray-500">{{ category.description }}</p>
+    <p class="text-sm text-gray-500 dark:text-gray-400">{{ category.description }}</p>
   </div>
 </template>
 

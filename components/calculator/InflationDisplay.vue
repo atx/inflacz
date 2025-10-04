@@ -1,8 +1,8 @@
 <template>
   <div class="relative mb-12 overflow-hidden">
     <!-- Gradient overlays for scroll indication  -->
-    <div class="absolute left-0 top-0 bottom-0 w-32 lg:w-0 bg-gradient-to-r from-gray-50 to-transparent z-10"></div>
-    <div class="absolute right-0 top-0 bottom-0 w-32 lg:w-0 bg-gradient-to-l from-gray-50 to-transparent z-10"></div>
+    <div class="absolute left-0 top-0 bottom-0 w-32 lg:w-0 bg-gradient-to-r from-gray-50 dark:from-gray-900 to-transparent z-10"></div>
+    <div class="absolute right-0 top-0 bottom-0 w-32 lg:w-0 bg-gradient-to-l from-gray-50 dark:from-gray-900 to-transparent z-10"></div>
     
     <!-- Scrollable container -->
     <div 
@@ -25,7 +25,7 @@
               {{ isNaN(rate.value) ? "?" : rate.value.toFixed(1) }}%
             </span>
           </div>
-          <div class="text-gray-600 whitespace-nowrap">
+          <div class="text-gray-600 dark:text-gray-400 whitespace-nowrap">
             {{ rate.year }}
             <span v-if="rate.isYTD" class="text-sm">(YTD)</span>
           </div>

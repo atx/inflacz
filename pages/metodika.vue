@@ -1,10 +1,10 @@
 <template>
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <h1 class="text-3xl font-bold text-gray-900 mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8">
       Metodika výpočtu osobní míry inflace
     </h1>
     
-    <div class="prose prose-blue max-w-none">
+    <div class="prose prose-blue dark:prose-invert max-w-none">
       <p>
         Oficiální míra inflace je vypočítávána Českým statistickým úřadem na základě tzv. spotřebního koše. Ten obsahuje přes 700 reprezentativních položek rozdělených do 12 hlavních kategorií, od potravin přes bydlení až po vzdělávání. Každé položce je přiřazena váha podle toho, jak velkou část výdajů "průměrná" česká domácnost na danou kategorii vynakládá.
       </p>

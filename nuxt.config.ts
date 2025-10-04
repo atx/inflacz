@@ -2,7 +2,7 @@ import tailwindTypography from '@tailwindcss/typography'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@nuxtjs/tailwindcss', '@nuxt/icon'],
+  modules: ['@nuxtjs/tailwindcss', '@nuxt/icon', '@nuxtjs/color-mode'],
   target: 'static',
 
   router: {
@@ -29,8 +29,13 @@ export default defineNuxtConfig({
 
   tailwindcss: {
     config: {
+      darkMode: 'class',
       plugins: [tailwindTypography]
     }
+  },
+
+  colorMode: {
+    classSuffix: ''
   },
 
   compatibilityDate: '2025-01-02'

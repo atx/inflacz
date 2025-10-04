@@ -1,6 +1,6 @@
 <template>
-  <div 
-  class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 p-6 cursor-pointer"
+  <div
+    class="bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md dark:hover:shadow-lg dark:shadow-gray-700/50 transition-shadow duration-200 p-6 cursor-pointer"
     @click.middle="handleClickMiddle"
     @click="handleClick"
   >
@@ -10,12 +10,13 @@
         :alt="profile.image.alt"
         :width="profile.image.width"
         :height="profile.image.height"
+        class="p-1 bg-gray-100 rounded-md dark:bg-gray-700"
       />
-      <h3 class="text-xl font-semibold text-gray-900">
+      <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
         {{ profile.title }}
       </h3>
     </div>
-    <p class="text-gray-600">
+    <p class="text-gray-600 dark:text-gray-400">
       {{ profile.description }}
     </p>
   </div>
